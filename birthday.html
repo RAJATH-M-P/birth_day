@@ -98,6 +98,19 @@
     animation:move3 10s infinite ease-in-out;
 }
 
+/* Extra Image Positions */
+.p4{
+    left:14%;
+    bottom:25%;
+    animation:move4 13s infinite ease-in-out;
+}
+
+.p5{
+    right:14%;
+    top:55%;
+    animation:move5 11s infinite ease-in-out;
+}
+
 @keyframes move1{
     0%,100%{
         transform:translateY(0px) rotate(-5deg);
@@ -122,6 +135,24 @@
     }
     50%{
         transform:translateX(40px) scale(1.1);
+    }
+}
+
+@keyframes move4{
+    0%,100%{
+        transform:translateY(0px) rotate(-3deg);
+    }
+    50%{
+        transform:translateY(-35px) rotate(3deg);
+    }
+}
+
+@keyframes move5{
+    0%,100%{
+        transform:translateY(0px) rotate(4deg);
+    }
+    50%{
+        transform:translateY(-30px) rotate(-4deg);
     }
 }
 
@@ -366,11 +397,7 @@
     <!-- Full-size background: use full-bg.png (already in folder) -->
     <img src="full-bg.png" class="bg-full" alt="full background image">
 
-    <div class="photo-background">
-    <img src="photo1.jpeg" class="bg-photo p1">
-    <img src="photo2.jpeg" class="bg-photo p2">
-    <img src="photo3.jpeg" class="bg-photo p3">
-     </div>
+    <div id="photoBackground" class="photo-background"></div>
 
     <audio id="birthdayAudio" src="birthday-song.mp3" preload="auto"></audio>
 
@@ -378,6 +405,7 @@
         const introOverlay = document.getElementById('introOverlay');
         const introEmoji = document.getElementById('introEmoji');
         const eventMessage = document.getElementById('eventMessage');
+        const cakePanel = document.getElementById('cakePanel');
 
         function celebrate() {
             showIntroEmoji();
@@ -387,7 +415,9 @@
             const emojis = ['✨', '🎂', '🎈', '🥳', '🎉'];
             introEmoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
             introOverlay.classList.add('visible');
-            eventMessage.classList.remove('visible');
+            if (eventMessage) {
+                eventMessage.classList.remove('visible');
+            }
 
             setTimeout(() => {
                 introOverlay.classList.remove('visible');
@@ -401,25 +431,35 @@
                 balloon.style.animation = `float ${4 + (index * 0.4)}s ease-in-out infinite`;
             });
 
-            eventMessage.textContent = 'Let the party begin!';
-            eventMessage.classList.add('visible');
+            if (eventMessage) {
+                eventMessage.textContent = 'Let the party begin!';
+                eventMessage.classList.add('visible');
+            }
             createStars(14);
             createConfetti(60);
             playCelebrationAudio();
 
             setTimeout(() => {
-                eventMessage.textContent = 'A sweet cake is coming...';
-                document.getElementById('cakePanel').classList.add('visible');
+                if (eventMessage) {
+                    eventMessage.textContent = 'A sweet cake is coming...';
+                }
+                if (cakePanel) {
+                    cakePanel.classList.add('visible');
+                }
             }, 1100);
 
             setTimeout(() => {
-                eventMessage.textContent = 'Time for wishes and music!';
+                if (eventMessage) {
+                    eventMessage.textContent = 'Time for wishes and music!';
+                }
                 createStars(18);
                 createConfetti(60);
             }, 2200);
 
             setTimeout(() => {
-                eventMessage.textContent = 'Keep celebrating!';
+                if (eventMessage) {
+                    eventMessage.textContent = 'Keep celebrating!';
+                }
             }, 3400);
 
             setTimeout(() => {
