@@ -135,30 +135,34 @@
         }
 
         .scene {
-            position: relative;
-            width: min(540px, calc(100vw - 40px));
-            padding: 30px;
-            z-index:5;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            pointer-events: none;
         }
 
         .card {
-            position: relative;
-            background: var(--card);
-            border: 1px solid rgba(255,255,255,0.6);
-            border-radius: 30px;
-            box-shadow: var(--shadow);
-            padding: 38px 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
             text-align: center;
-            overflow: hidden;
+            overflow: visible;
+            backdrop-filter: none;
+            pointer-events: auto;
         }
 
         .card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.45), transparent 24%),
-                        linear-gradient(135deg, rgba(255,255,255,0.35), transparent 60%);
-            pointer-events: none;
+            display: none;
         }
 
         .title {
@@ -355,19 +359,9 @@
     </div>
 
     <div class="scene">
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-
         <div class="card">
-            <div id="eventMessage" class="badge event-message">Make a wish and press celebrate!</div>
-            <div id="cakePanel" class="cake-panel">🍰 A surprise cake is on its way...</div>
-            <h1 class="title">Happy Birthday! Dear Friend</h1>
-            <p class="subtitle">Wishing you a wonderful day filled with joy, laughter, and unforgettable memories. Let's make this celebration extra special.Today is yours</p>
-            <button class="btn" onclick="celebrate()">🎉 Celebrate!Yours day</button>
+            <button class="btn" onclick="celebrate()">🎉 Celebrate! Yours day</button>
         </div>
-
     </div>
     <!-- Full-size background: use full-bg.png (already in folder) -->
     <img src="full-bg.png" class="bg-full" alt="full background image">
