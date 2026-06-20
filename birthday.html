@@ -11,7 +11,7 @@
             --bg-end: #8cb7ff;
             --card: rgba(255, 255, 255, 0.92);
             --text: #2d3a5b;
-            --accent: #ff6b81;
+            --accent: #ff6bd3de;
             --accent-soft: #ff9ca3;
             --shadow: 0 20px 70px rgba(20, 45, 105, 0.16);
         }
@@ -39,6 +39,31 @@
     height:100%;
     z-index:-1;
     overflow:hidden;
+}
+
+.bg-full{
+    position:fixed;
+    left:50%;
+    top:50%;
+    z-index:-3;
+    pointer-events:none;
+    /* Let the image scale to fit inside the viewport without cropping */
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    transform:translate(-50%, -50%);
+    /* Keep some horizontal padding so it doesn't touch screen edges */
+    max-width:92vw;
+    max-height:92vh;
+    opacity:0.95;
+    filter: blur(0.3px) saturate(1.05);
+}
+
+@media (max-width: 420px) {
+    .bg-full {
+        max-width:96vw;
+        max-height:70vh;
+    }
 }
 
 .bg-photo{
@@ -344,6 +369,9 @@
         </div>
 
     </div>
+    <!-- Full-size background: use full-bg.png (already in folder) -->
+    <img src="full-bg.png" class="bg-full" alt="full background image">
+
     <div class="photo-background">
     <img src="photo1.jpeg" class="bg-photo p1">
     <img src="photo2.jpeg" class="bg-photo p2">
