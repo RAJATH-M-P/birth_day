@@ -20,6 +20,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            height: 100%;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: radial-gradient(circle at top left, var(--bg-start), var(--bg-middle) 35%, var(--bg-end) 100%);
@@ -42,20 +46,15 @@
 }
 
 .bg-full{
-    position:fixed;
-    left:50%;
-    top:50%;
-    z-index:-3;
-    pointer-events:none;
-    /* Let the image scale to fit inside the viewport without cropping */
-    width:auto;
-    height:auto;
-    object-fit:contain;
-    transform:translate(-50%, -50%);
-    /* Keep some horizontal padding so it doesn't touch screen edges */
-    max-width:92vw;
-    max-height:92vh;
-    opacity:0.95;
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    opacity: 0.95;
     filter: blur(0.3px) saturate(1.05);
 }
 
